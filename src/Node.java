@@ -2,35 +2,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Node {
-    protected String nodeName;
-    protected List<Node> neighbourList = new ArrayList<Node>();
+    private String node;
+    private List<Node> nodeList = new ArrayList<Node>();
 
-    public Node (String nodeName){
-        this.nodeName = nodeName;
+    public Node (String node){
+        this.node = node;
     }
 
-    public String getNodeName() {
-        return nodeName;
+    public String getNode() {
+        return node;
     }
 
-    public boolean addNeighbour(Node node){
-        if(node!=null && !isNeighbour(node)) {
-            neighbourList.add(node);
-            node.addNeighbour(this);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isNeighbour(Node node){
-        for(Node n: neighbourList){
-            if(n.getNodeName() == node.getNodeName())
+        public boolean isNeighbour(Node node){
+        for(Node n: nodeList){
+            if(n.getNode() == node.getNode())
                 return true;
         }
         return false;
     }
 
-    public List<Node> getNeighbourList() {
-        return neighbourList;
+    public boolean addNeighbourTogether(Node node){
+        if(node!=null || !isNeighbour(node)) {
+            nodeList.add(node);
+            node.addNeighbourTogether(this);
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+    public List<Node> getNodeList() {
+        return nodeList;
     }
 }

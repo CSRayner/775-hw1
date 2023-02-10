@@ -2,13 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pod {
-    private List<Aggregation> aggregationList = new ArrayList<Aggregation>();
-    private List<Edge> edgeList = new ArrayList<Edge>();
+    private List<Agg> aggList = new ArrayList<Agg>();
+    private List<Edge> eList = new ArrayList<Edge>();
 
-    public Pod(){}
-    public boolean addAggregation(Aggregation aggregation){
+    public boolean addAggregation(Agg aggregation){
         if(aggregation !=null) {
-            aggregationList.add(aggregation);
+         aggList.add(aggregation);
             return true;
         }
         return false;
@@ -16,28 +15,28 @@ public class Pod {
 
     public boolean addEdge(Edge edge) {
         if(edge != null){
-            edgeList.add(edge);
+            eList.add(edge);
             return true;
         }
         return false;
     }
 
-    public Aggregation getAggregation(int index) {
-        if(aggregationList.size() <= index)
+    public Agg getAggregation(int index) {
+        if (aggList.size() <= index)
             return null;
-        return aggregationList.get(index);
+        return aggList.get(index);
     }
     public Edge getEdge(int index) {
-        if(edgeList.size() <= index)
+        if(eList.size() <= index)
             return null;
-        return edgeList.get(index);
+        return eList.get(index);
     }
     public void connectSwitches() {
-        for(Aggregation a: aggregationList)
-            for(Edge e: edgeList)
-                a.addNeighbour(e);
+        for(Agg a: aggList)
+            for(Edge e: eList)
+                a.addNeighbourTogether(e);
     }
 
-    public List<Aggregation> getAggregationList() {return aggregationList;}
-    public List<Edge> getEdgeList() {return edgeList;}
+    public List<Agg> getAggList() {return aggList;}
+    public List<Edge> getEdgeList() {return eList;}
 }
